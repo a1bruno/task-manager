@@ -24,4 +24,7 @@ class TaskManager {
             console.log(`${index + 1}: ${task.showDescription} - ${task.complete ? 'Completed task!' : 'Not completed.'}`)
         })
     }
+    removeTask(index) {
+        this.tasks.splice(index - 1, 1)
+    }
 }
