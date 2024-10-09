@@ -6,7 +6,10 @@ class Task {
     completeIt() {
         this.complete = true
     }
-    showDescription() {
+    changeDescription(newDesc) {
+        this.description = newDesc
+    }
+    get Description() {
         return this.description
     }
 }
@@ -21,10 +24,16 @@ class TaskManager {
     }
     showTasks() {
         this.tasks.forEach((task, index) => {
-            console.log(`${index + 1}: ${task.showDescription} - ${task.complete ? 'Completed task!' : 'Not completed.'}`)
+            console.log(`${index + 1}: ${task.Description} - ${task.complete ? 'Completed task!' : 'Not completed.'}`)
         })
     }
     removeTask(index) {
         this.tasks.splice(index - 1, 1)
     }
 }
+
+let manager = new TaskManager()
+manager.addTask("learn js")
+manager.addTask("learn node")
+manager.tasks[0].completeIt()
+manager.showTasks()
