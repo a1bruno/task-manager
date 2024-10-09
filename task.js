@@ -11,3 +11,17 @@ class Task {
     }
 }
 
+class TaskManager {
+    constructor() {
+        this.tasks = []
+    }
+    addTask(description) {
+        const task = new Task(description)
+        this.tasks.push(task)
+    }
+    showTasks() {
+        this.tasks.forEach((task, index) => {
+            console.log(`${index + 1}: ${task.showDescription} - ${task.complete ? 'Completed task!' : 'Not completed.'}`)
+        })
+    }
+}
