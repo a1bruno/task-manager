@@ -1,6 +1,7 @@
 class Task {
-    constructor(description) {
+    constructor(description, date) {
         this.description = description
+        this.date = date
         this.complete = false
     }
     completeIt() {
@@ -10,7 +11,7 @@ class Task {
         this.description = newDesc
     }
     get Description() {
-        return this.description
+        return `${this.description}, ${this.date}`
     }
 }
 
@@ -18,8 +19,8 @@ class TaskManager {
     constructor() {
         this.tasks = []
     }
-    addTask(description) {
-        const task = new Task(description)
+    addTask(description, date) {
+        const task = new Task(description, date)
         this.tasks.push(task)
     }
     showTasks() {
@@ -47,7 +48,7 @@ class TaskManager {
 }
 
 let manager = new TaskManager()
-manager.addTask("learn js")
-manager.addTask("learn node")
+manager.addTask("learn js", "10/10/2024")
+manager.addTask("learn node", "10/10/2024")
 manager.tasks[0].completeIt()
-manager.showNotCompletedTasks()
+manager.showTasks()
