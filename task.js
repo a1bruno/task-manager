@@ -1,7 +1,8 @@
 class Task {
-    constructor(description, date) {
+    constructor(description, date, priority = "low") {
         this.description = description
         this.date = date
+        this.priority = priority
         this.complete = false
     }
     completeIt() {
@@ -19,26 +20,33 @@ class TaskManager {
     constructor() {
         this.tasks = []
     }
-    addTask(description, date) {
-        const task = new Task(description, date)
+    addTask(description, date, priority = "low") {
+        const task = new Task(description, date, priority)
         this.tasks.push(task)
     }
     showTasks() {
         this.tasks.forEach((task, index) => {
-            console.log(`${index + 1}: ${task.Description} - ${task.complete ? 'Completed task!' : 'Not completed.'}`)
+            console.log(`${index + 1}: ${task.Description} - ${task.complete ? 'Completed task!' : 'Not completed.'} Task priority: ${task.priority}.`)
         })
     }
     showCompletedTasks() {
         this.tasks.forEach((task, index) => {
             if (this.tasks[index].complete === true) {
-                console.log(`${index + 1}: ${task.Description} - 'Completed task!'`)
+                console.log(`${index + 1}: ${task.Description} - 'Completed task!', priority ${task.priority}.`)
             }
         })
 }
     showNotCompletedTasks() {
         this.tasks.forEach((task, index) => {
             if(this.tasks[index].complete === false) {
-                console.log(`${index + 1}: ${task.Description} - 'Not completed.'`)
+                console.log(`${index + 1}: ${task.Description} - 'Not completed.' Task priority: ${task.priority}.`)
+            }
+        })
+    }
+    showPriorityTasks(priority) {
+        this.tasks.forEach((task, index) => {
+            if(this.tasks[index].priority === priority) {
+                console.log(`${index + 1}: ${task.Description} - Priority: ${task.priority}.`)
             }
         })
     }
@@ -48,7 +56,10 @@ class TaskManager {
 }
 
 let manager = new TaskManager()
-manager.addTask("learn js", "10/10/2024")
 manager.addTask("learn node", "10/10/2024")
+manager.addTask("study 1h", "10/10/2024")
+manager.addTask("practice some exercise", "10/10/2024")
+manager.addTask("learn js", "10/10/2024", "high")
+manager.addTask("go shop", "10/10/2024")
 manager.tasks[0].completeIt()
-manager.showTasks()
+manager.showPriorityTasks("low")
