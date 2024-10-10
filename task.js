@@ -8,9 +8,6 @@ class Task {
     completeIt() {
         this.complete = true
     }
-    changeDescription(newDesc) {
-        this.description = newDesc
-    }
     get Description() {
         return `${this.description}, ${this.date}`
     }
@@ -23,6 +20,9 @@ class TaskManager {
     addTask(description, date, priority = "low") {
         const task = new Task(description, date, priority)
         this.tasks.push(task)
+    }
+    changeDesc(newDesc, taskIndex) {
+        this.tasks[taskIndex].description = newDesc
     }
     showTasks() {
         this.tasks.forEach((task, index) => {
@@ -61,5 +61,6 @@ manager.addTask("study 1h", "10/10/2024")
 manager.addTask("practice some exercise", "10/10/2024")
 manager.addTask("learn js", "10/10/2024", "high")
 manager.addTask("go shop", "10/10/2024")
-manager.tasks[0].completeIt()
-manager.showPriorityTasks("low")
+manager.tasks[3].completeIt()
+manager.changeDesc("learn expressJs", 3)
+manager.showTasks()
